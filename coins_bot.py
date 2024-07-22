@@ -73,7 +73,9 @@ def main():
         @client.on(events.NewMessage())
         async def my_event_handler(event):
 
-            if event.message.chat == "telethon.tl.types.User":
+            # if message not from a private chat then don't respond
+            if not isinstance(event.message.chat, telethon.tl.types.User):
+                logger.info(f"ignoring message from a group or chanel")
                 return
 
             sender = await event.get_sender() # sender infromation

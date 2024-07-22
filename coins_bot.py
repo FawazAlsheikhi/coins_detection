@@ -72,9 +72,13 @@ def main():
         # wait for new messages
         @client.on(events.NewMessage())
         async def my_event_handler(event):
+
+            # if message not from a private chat then don't respond
+            if event.message.chat == "telethon.tl.types.User":
+                return
+
             sender = await event.get_sender() # sender infromation
             chat_id = event.message.peer_id #get the chat id to reply to it with the result later
-
             #check if a photo is sent
             if event.photo:
 

@@ -73,8 +73,7 @@ def main():
         @client.on(events.NewMessage())
         async def my_event_handler(event):
 
-            # if message not from a private chat then don't respond
-            if not isinstance(chat, telethon.tl.types.User):
+            if event.message.chat == "telethon.tl.types.User":
                 return
 
             sender = await event.get_sender() # sender infromation

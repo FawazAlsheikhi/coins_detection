@@ -1,3 +1,4 @@
+import telethon
 from telethon import TelegramClient, events
 from ultralytics import YOLO
 import json
